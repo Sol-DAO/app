@@ -1,0 +1,531 @@
+{
+  "_format": "ethers-rs-sol-cache-3",
+  "paths": {
+    "artifacts": "out",
+    "build_infos": "out/build-info",
+    "sources": "src",
+    "tests": "test",
+    "scripts": "script",
+    "libraries": [
+      "lib"
+    ]
+  },
+  "files": {
+    "lib/forge-std/lib/ds-test/src/test.sol": {
+      "lastModificationDate": 1662407913895,
+      "contentHash": "a85cb92e605e48103a5375f81c8233f2",
+      "sourceName": "lib/forge-std/lib/ds-test/src/test.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.5.0",
+      "artifacts": {
+        "DSTest": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "test.sol\\DSTest.json"
+        }
+      }
+    },
+    "lib/forge-std/src/Script.sol": {
+      "lastModificationDate": 1662408985103,
+      "contentHash": "4fa9e0754ff7ee64582fff9aee18f4f8",
+      "sourceName": "lib/forge-std/src/Script.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol"
+      ],
+      "versionRequirement": ">=0.6.0, <0.9.0",
+      "artifacts": {
+        "Script": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "Script.sol\\Script.json"
+        }
+      }
+    },
+    "lib/forge-std/src/StdJson.sol": {
+      "lastModificationDate": 1662408985105,
+      "contentHash": "b05b6260054eb3262fb52f291bdcbcb6",
+      "sourceName": "lib/forge-std/src/StdJson.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/Vm.sol"
+      ],
+      "versionRequirement": ">=0.6.0, <0.9.0",
+      "artifacts": {
+        "stdJson": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "StdJson.sol\\stdJson.json"
+        }
+      }
+    },
+    "lib/forge-std/src/Test.sol": {
+      "lastModificationDate": 1662408985108,
+      "contentHash": "54fdeede177e65b60b8147f87c076a4d",
+      "sourceName": "lib/forge-std/src/Test.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/lib/ds-test/src\\test.sol",
+        "lib/forge-std/src\\Script.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol"
+      ],
+      "versionRequirement": ">=0.6.0, <0.9.0",
+      "artifacts": {
+        "Test": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "Test.sol\\Test.json"
+        },
+        "stdError": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "Test.sol\\stdError.json"
+        },
+        "stdMath": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "Test.sol\\stdMath.json"
+        },
+        "stdStorage": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "Test.sol\\stdStorage.json"
+        }
+      }
+    },
+    "lib/forge-std/src/Vm.sol": {
+      "lastModificationDate": 1662408985114,
+      "contentHash": "9099c007a95db7e93d392a160531aeab",
+      "sourceName": "lib/forge-std/src/Vm.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.6.0, <0.9.0",
+      "artifacts": {
+        "Vm": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "Vm.sol\\Vm.json"
+        }
+      }
+    },
+    "lib/forge-std/src/console.sol": {
+      "lastModificationDate": 1662407909883,
+      "contentHash": "c8cf989d04bc2e3069e3d91facf3b69c",
+      "sourceName": "lib/forge-std/src/console.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.4.22, <0.9.0",
+      "artifacts": {
+        "console": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "console.sol\\console.json"
+        }
+      }
+    },
+    "lib/forge-std/src/console2.sol": {
+      "lastModificationDate": 1662407909886,
+      "contentHash": "84e14285f3171a14073d0f81363094ac",
+      "sourceName": "lib/forge-std/src/console2.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.4.22, <0.9.0",
+      "artifacts": {
+        "console2": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "console2.sol\\console2.json"
+        }
+      }
+    },
+    "script/Deploy.s.sol": {
+      "lastModificationDate": 1662408881539,
+      "contentHash": "fbfc38ad04c9b0580631f90fc05b5fd8",
+      "sourceName": "script/Deploy.s.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/src\\Script.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "src\\tokens\\ERC20.sol",
+        "src\\tokens\\ERC20token.sol",
+        "src\\utils\\Clone.sol"
+      ],
+      "versionRequirement": "^0.8.16",
+      "artifacts": {
+        "Deploy": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "Deploy.s.sol\\Deploy.json"
+        }
+      }
+    },
+    "src/tokens/ERC20.sol": {
+      "lastModificationDate": 1662407857645,
+      "contentHash": "37a30c87e1d5aad73f8a1c9a49ec708b",
+      "sourceName": "src/tokens/ERC20.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "src\\utils\\Clone.sol"
+      ],
+      "versionRequirement": "^0.8.4",
+      "artifacts": {
+        "ERC20": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "ERC20.sol\\ERC20.json"
+        }
+      }
+    },
+    "src/tokens/ERC20token.sol": {
+      "lastModificationDate": 1662408835475,
+      "contentHash": "b3e8bf4dcf4f16561911578c1fd98979",
+      "sourceName": "src/tokens/ERC20token.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "src\\tokens\\ERC20.sol",
+        "src\\utils\\Clone.sol"
+      ],
+      "versionRequirement": "^0.8.4",
+      "artifacts": {
+        "ERC20token": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "ERC20token.sol\\ERC20token.json"
+        }
+      }
+    },
+    "src/utils/Clone.sol": {
+      "lastModificationDate": 1662407857648,
+      "contentHash": "5e9f9a9f0325ebd8f5b22d0a79dfed88",
+      "sourceName": "src/utils/Clone.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.4",
+      "artifacts": {
+        "Clone": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "Clone.sol\\Clone.json"
+        }
+      }
+    },
+    "test/ERC20.t.sol": {
+      "lastModificationDate": 1662408856803,
+      "contentHash": "0acd61e8604c942567a6eec608c2dfcb",
+      "sourceName": "test/ERC20.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/lib/ds-test/src\\test.sol",
+        "lib/forge-std/src\\Script.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src\\Test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "src\\tokens\\ERC20.sol",
+        "src\\tokens\\ERC20token.sol",
+        "src\\utils\\Clone.sol"
+      ],
+      "versionRequirement": "^0.8.15",
+      "artifacts": {
+        "ERC20Test": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "ERC20.t.sol\\ERC20Test.json"
+        }
+      }
+    }
+  }
+}
