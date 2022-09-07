@@ -35,7 +35,7 @@ contract ERC20Test is Test {
         address to = address(this);
 
         vm.prank(from);
-        vm.expectRevert(ERC20.ERC20__ApproveFromTheZeroAddress.selector);
+        vm.expectRevert(ERC20.ApproveFromTheZeroAddress.selector);
         erc20.approve(to, 1e18);
     }
 
@@ -44,7 +44,7 @@ contract ERC20Test is Test {
         address to = address(0);
 
         vm.prank(from);
-        vm.expectRevert(ERC20.ERC20__ApproveToTheZeroAddress.selector);
+        vm.expectRevert(ERC20.ApproveToTheZeroAddress.selector);
         erc20.approve(to, 1e18);
     }
 
@@ -57,7 +57,7 @@ contract ERC20Test is Test {
         address to = address(this);
 
         vm.prank(from);
-        vm.expectRevert(ERC20.ERC20__TransferFromTheZeroAddress.selector);
+        vm.expectRevert(ERC20.TransferFromTheZeroAddress.selector);
         erc20.transfer(to, 1e18);
     }
 
@@ -65,7 +65,7 @@ contract ERC20Test is Test {
         address from = address(this);
         address to = address(0);
 
-        vm.expectRevert(ERC20.ERC20__TransferToTheZeroAddress.selector);
+        vm.expectRevert(ERC20.TransferToTheZeroAddress.selector);
         erc20.transfer(to, 1e18);
     }
 
@@ -74,7 +74,7 @@ contract ERC20Test is Test {
         address to = address(0xBEEF);
 
         erc20.mint(from, 1e18);
-        vm.expectRevert(ERC20.ERC20__TransferAmountExceedsBalance.selector);
+        vm.expectRevert(ERC20.TransferAmountExceedsBalance.selector);
         erc20.transfer(to, 1e18);
     }
 
@@ -114,7 +114,7 @@ contract ERC20Test is Test {
             )
         );
 
-        vm.expectRevert(ERC20.EIP2612__DeadlineBelowBlockTimestamp.selector);
+        vm.expectRevert(ERC20.DeadlineBelowBlockTimestamp.selector);
         erc20.permit(
             owner,
             address(0xCAFE),
@@ -124,5 +124,35 @@ contract ERC20Test is Test {
             r,
             s
         );
+    }
+
+    function testInvalidSignerRecoveredAddress() public {
+        uint256 privateKey = 0xBEEF;
+        address owner = vm.addr(privateKey);
+
+        address notOwner = vm.addr(0xCAFE);
+
+        (uint8 v, bytes32 r, bytes32 s) = vm.sign(
+            privateKey,
+            keccak256(
+                abi.encodePacked(
+                    "\x19\x01",
+                    erc20.DOMAIN_SEPARATOR(),
+                    keccak256(
+                        abi.encode(
+                            PERMIT_TYPEHASH,
+                            owner,
+                            address(0xCAFE),
+                            1e18,
+                            0,
+                            block.timestamp
+                        )
+                    )
+                )
+            )
+        );
+
+        vm.expectRevert(ERC20.InvalidSignerRecoveredAddress.selector);
+        erc20.permit(notOwner, address(0xCAFE), 1e18, block.timestamp, v, r, s);
     }
 }
