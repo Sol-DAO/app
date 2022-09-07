@@ -24,25 +24,35 @@ abstract contract ERC20 is Clone {
                                  ERRORS
     //////////////////////////////////////////////////////////////*/
 
-    error ERC20__ApproveFromTheZeroAddress();
+    /// @dev approve() was called from address(0)
+    error ApproveFromTheZeroAddress();
 
-    error ERC20__ApproveToTheZeroAddress();
+    /// @dev approve() is trying to send amount to address(0)
+    error ApproveToTheZeroAddress();
 
-    error ERC20__TransferFromTheZeroAddress();
+    /// @dev transfer() was called from address(0)
+    error TransferFromTheZeroAddress();
 
-    error ERC20__TransferToTheZeroAddress();
+    /// @dev transfer() was trying to transfer to address(0)
+    error TransferToTheZeroAddress();
 
-    error ERC20__TransferAmountExceedsBalance();
+    /// @dev Amount requested to be transfered was above the senders balance
+    error TransferAmountExceedsBalance();
 
-    error ERC20__AllowedEqualToMax();
+    /// @dev Allowed allowance is equal to the max uint256 value
+    error AllowedEqualToMax();
 
-    error ERC20__MintToTheZeroAddress();
+    /// @dev Deadline param is below current block timestamp
+    error DeadlineBelowBlockTimestamp();
 
-    error ERC20__BurnFromTheZeroAddress();
+    /// @dev The recoveredAddress is either not the owner or address(0)
+    error InvalidSignerRecoveredAddress();
 
-    error EIP2612__DeadlineBelowBlockTimestamp();
+    /// @dev Trying to mint to address(0)
+    error MintToTheZeroAddress();
 
-    error EIP2612__InvalidSignerRecoveredAddress();
+    /// @dev Calling burn from address(0)
+    error BurnFromTheZeroAddress();
 
     /*//////////////////////////////////////////////////////////////
                             METADATA STORAGE
@@ -99,9 +109,9 @@ abstract contract ERC20 is Clone {
         returns (bool)
     {
         // require(owner != address(0), "ERC20: approve from the zero address");
-        if (msg.sender == address(0)) revert ERC20__ApproveFromTheZeroAddress();
+        if (msg.sender == address(0)) revert ApproveFromTheZeroAddress();
         // require(spender != address(0), "ERC20: approve to the zero address");
-        if (spender == address(0)) revert ERC20__ApproveToTheZeroAddress();
+        if (spender == address(0)) revert ApproveToTheZeroAddress();
 
         allowance[msg.sender][spender] = amount;
 
@@ -116,16 +126,15 @@ abstract contract ERC20 is Clone {
         returns (bool)
     {
         // require(from != address(0), "ERC20: transfer from the zero address");
-        if (msg.sender == address(0))
-            revert ERC20__TransferFromTheZeroAddress();
+        if (msg.sender == address(0)) revert TransferFromTheZeroAddress();
         // require(to != address(0), "ERC20: transfer to the zero address");
-        if (to == address(0)) revert ERC20__TransferToTheZeroAddress();
+        if (to == address(0)) revert TransferToTheZeroAddress();
 
         balanceOf[msg.sender] -= amount;
 
         // require(fromBalance >= amount, "ERC20: transfer amount exceeds balance");
         if (balanceOf[msg.sender] < amount)
-            revert ERC20__TransferAmountExceedsBalance();
+            revert TransferAmountExceedsBalance();
 
         // Cannot overflow because the sum of all user
         // balances can't exceed the max uint256 value.
@@ -145,7 +154,7 @@ abstract contract ERC20 is Clone {
     ) public virtual returns (bool) {
         uint256 allowed = allowance[from][msg.sender]; // Saves gas for limited approvals.
 
-        if (allowed >= type(uint256).max) revert ERC20__AllowedEqualToMax();
+        if (allowed >= type(uint256).max) revert AllowedEqualToMax();
 
         if (allowed != type(uint256).max)
             allowance[from][msg.sender] = allowed - amount;
@@ -176,8 +185,7 @@ abstract contract ERC20 is Clone {
         bytes32 r,
         bytes32 s
     ) public virtual {
-        if (deadline < block.timestamp)
-            revert EIP2612__DeadlineBelowBlockTimestamp();
+        if (deadline < block.timestamp) revert DeadlineBelowBlockTimestamp();
 
         // Unchecked because the only math done is incrementing
         // the owner's nonce which cannot realistically overflow.
@@ -208,7 +216,7 @@ abstract contract ERC20 is Clone {
 
             allowance[recoveredAddress][spender] = value;
             if (recoveredAddress == address(0) || recoveredAddress != owner) {
-                revert EIP2612__InvalidSignerRecoveredAddress();
+                revert InvalidSignerRecoveredAddress();
             }
         }
     }
@@ -243,7 +251,7 @@ abstract contract ERC20 is Clone {
 
     function _mint(address to, uint256 amount) internal virtual {
         // require(account != address(0), "ERC20: mint to the zero address");
-        if (to == address(0)) revert ERC20__MintToTheZeroAddress();
+        if (to == address(0)) revert MintToTheZeroAddress();
 
         totalSupply += amount;
 
@@ -258,7 +266,7 @@ abstract contract ERC20 is Clone {
 
     function _burn(address from, uint256 amount) internal virtual {
         // require(account != address(0), "ERC20: burn from the zero address");
-        if (from != address(0)) revert ERC20__BurnFromTheZeroAddress();
+        if (from == address(0)) revert BurnFromTheZeroAddress();
 
         balanceOf[from] -= amount;
 
