@@ -356,8 +356,8 @@
       }
     },
     "src/tokens/ERC20.sol": {
-      "lastModificationDate": 1662551490071,
-      "contentHash": "fa989ae6a0cbb7fa78e7916ece37797d",
+      "lastModificationDate": 1662586246383,
+      "contentHash": "29a5a0c60cc9e1f197226557a7dc4222",
       "sourceName": "src/tokens/ERC20.sol",
       "solcConfig": {
         "settings": {
@@ -478,8 +478,8 @@
       }
     },
     "test/ERC20.t.sol": {
-      "lastModificationDate": 1662566564341,
-      "contentHash": "a8adab833d1beb1c1b77787ea4cda0be",
+      "lastModificationDate": 1662586619143,
+      "contentHash": "2094ff55953527d54fdda24619504655",
       "sourceName": "test/ERC20.t.sol",
       "solcConfig": {
         "settings": {
