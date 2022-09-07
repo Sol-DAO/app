@@ -9,18 +9,6 @@ import {Clone} from "../utils/Clone.sol";
 /// @dev Do not manually set balances without updating totalSupply, as the sum of all user balances must not exceed it.
 abstract contract ERC20 is Clone {
     /*//////////////////////////////////////////////////////////////
-                                 EVENTS
-    //////////////////////////////////////////////////////////////*/
-
-    event Transfer(address indexed from, address indexed to, uint256 amount);
-
-    event Approval(
-        address indexed owner,
-        address indexed spender,
-        uint256 amount
-    );
-
-    /*//////////////////////////////////////////////////////////////
                                  ERRORS
     //////////////////////////////////////////////////////////////*/
 
@@ -89,6 +77,18 @@ abstract contract ERC20 is Clone {
     bytes32 internal immutable INITIAL_DOMAIN_SEPARATOR;
 
     mapping(address => uint256) public nonces;
+
+    /*//////////////////////////////////////////////////////////////
+                                 EVENTS
+    //////////////////////////////////////////////////////////////*/
+
+    event Transfer(address indexed from, address indexed to, uint256 amount);
+
+    event Approval(
+        address indexed owner,
+        address indexed spender,
+        uint256 amount
+    );
 
     /*//////////////////////////////////////////////////////////////
                                CONSTRUCTOR
