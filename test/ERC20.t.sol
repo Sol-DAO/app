@@ -11,6 +11,11 @@ import {MockERC20} from "./mocks/MockERC20.sol";
 contract ERC20Test is Test {
     using stdStorage for StdStorage;
 
+    bytes32 constant PERMIT_TYPEHASH =
+        keccak256(
+            "Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)"
+        );
+
     MockERC20 erc20;
 
     function setUp() external {
@@ -85,6 +90,39 @@ contract ERC20Test is Test {
                              PERMIT FUNCTION
     //////////////////////////////////////////////////////////////*/
 
-    // Added permit function but don't know what values go in the v, r, s param slots.
-    // So will need help with this test
+    function testDeadlintBelowBlockTimestamp() public {
+        uint256 privateKey = 0xBEEF;
+        address owner = vm.addr(privateKey);
+
+        (uint8 v, bytes32 r, bytes32 s) = vm.sign(
+            privateKey,
+            keccak256(
+                abi.encodePacked(
+                    "\x19\x01",
+                    erc20.DOMAIN_SEPARATOR(),
+                    keccak256(
+                        abi.encode(
+                            PERMIT_TYPEHASH,
+                            owner,
+                            address(0xCAFE),
+                            1e18,
+                            0,
+                            block.timestamp
+                        )
+                    )
+                )
+            )
+        );
+
+        vm.expectRevert(ERC20.EIP2612__DeadlineBelowBlockTimestamp.selector);
+        erc20.permit(
+            owner,
+            address(0xCAFE),
+            1e18,
+            (block.timestamp - 1),
+            v,
+            r,
+            s
+        );
+    }
 }

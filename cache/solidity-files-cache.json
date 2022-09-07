@@ -478,8 +478,8 @@
       }
     },
     "test/ERC20.t.sol": {
-      "lastModificationDate": 1662552370631,
-      "contentHash": "bca04f1af0de4edb61da0d9effc99ad2",
+      "lastModificationDate": 1662566564341,
+      "contentHash": "a8adab833d1beb1c1b77787ea4cda0be",
       "sourceName": "test/ERC20.t.sol",
       "solcConfig": {
         "settings": {
