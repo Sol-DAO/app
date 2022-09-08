@@ -46,7 +46,7 @@ abstract contract ERC20 is Clone {
 
     bool private _initialized;
 
-    bytes32 internal INITIAL_DOMAIN_SEPARATOR;
+    bytes32 private INITIAL_DOMAIN_SEPARATOR;
 
     uint256 public totalSupply;
 
