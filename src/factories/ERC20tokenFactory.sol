@@ -3,6 +3,8 @@ pragma solidity ^0.8.4;
 
 import {ERC20token} from "../tokens/ERC20token.sol";
 
+import {ClonesWithImmutableArgs} from "../utils/ClonesWithImmutableArgs.sol";
+
 /// @notice Factory to create ERC20 token.
 contract ERC20tokenFactory {
     using ClonesWithImmutableArgs for address;
