@@ -18,7 +18,7 @@ contract ERC20tokenFactory {
     function createERC20token(
         bytes32 _name,
         bytes32 _symbol,
-        uint8 memory _decimals,
+        uint8 _decimals,
         bytes32 _salt
     ) public payable {
         ERC20token erc20 = ERC20token(
