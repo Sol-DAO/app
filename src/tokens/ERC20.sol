@@ -32,15 +32,42 @@ abstract contract ERC20 is Clone {
         return _getArgUint8(0x40);
     }
 
+    function chainId() external pure returns (uint8) {
+        return _getArgUint256(0x60);
+    }
+
+    error ExpiredSignature();
+
+    error InvalidSigner();
+
     /*//////////////////////////////////////////////////////////////
                               ERC20 STORAGE
     //////////////////////////////////////////////////////////////*/
+
+    bool private _initialized;
+
+    bytes32 private INITIAL_DOMAIN_SEPARATOR;
 
     uint256 public totalSupply;
 
     mapping(address => uint256) public balanceOf;
 
     mapping(address => mapping(address => uint256)) public allowance;
+
+    mapping(address => uint256) public nonces; 
+
+
+    modifier initializer() {
+        if(_initialized){
+            revert AlreadyInitialized();
+        }
+        _initialized = true;
+        _;
+    }
+
+    function initialize() external initializer {
+        INITIAL_DOMAIN_SEPARATOR = computeDomainSeparator();
+    }
 
     /*//////////////////////////////////////////////////////////////
                                ERC20 LOGIC
@@ -117,4 +144,66 @@ abstract contract ERC20 is Clone {
 
         emit Transfer(from, address(0), amount);
     }
+
+     /*//////////////////////////////////////////////////////////////
+                        EIP-21612 Logic
+    //////////////////////////////////////////////////////////////*/
+
+    function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r,bytes32 s) public virtual {
+        if(deadline < block.timestamp){
+            revert ExpiredSignature();
+        }
+
+        // Unchecked because the only math done is incrementing
+        // the owner's nonce which cannot realistically overflow.
+        unchecked {
+            address recoveredAddress = ecrecover(
+                keccak256(
+                    abi.encodePacked(
+                        "\x19\x01",
+                        DOMAIN_SEPARATOR(),
+                        keccak256(
+                            abi.encode(
+                                keccak256(
+                                    "Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)"
+                                ),
+                                owner,
+                                spender,
+                                value,
+                                nonces[owner]++,
+                                deadline
+                            )
+                        )
+                    )
+                ),
+                v,
+                r,
+                s
+            );
+
+            if (recoveredAddress == address(0) || recoveredAddress != owner){
+                revert InvalidSigner();
+            }
+
+            allowance[recoveredAddress][spender] = value;
+        }
+    }
+
+    function computeDomainSeparator() internal view virtual returns (bytes32) {
+        return
+            keccak256(
+                abi.encode(
+                    keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"),
+                    keccak256(bytes(name())),
+                    keccak256("1"),
+                    block.chainid,
+                    address(this)
+                )
+            );
+    }
+    
+    function DOMAIN_SEPARATOR() public view virtual returns (bytes32) {
+        return block.chainid == chainId() ? INITIAL_DOMAIN_SEPARATOR : computeDomainSeparator();
+    }
+    
 }
